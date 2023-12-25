@@ -7,8 +7,10 @@ from pandas import read_csv
 from datetime import datetime
 from pymongo.errors import ConnectionFailure
 from mongo_utils import encode_and_decode
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 client = MongoClient('mongo:27017')
 db = client['proton_db']
@@ -29,7 +31,7 @@ def seed_db():
         print(f"An error occurred during database seeding: {e}")
 
 
-@app.route('/sales')
+@app.route('/api/sales')
 def get_sales():
     sales = proton_sales.find().sort('Date', -1)
     return encode_and_decode(list(sales))
