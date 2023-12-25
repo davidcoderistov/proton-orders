@@ -22,7 +22,10 @@ def seed_db():
         if 'proton_db' not in client.list_database_names():
             df = read_csv('homework_order_lines.csv', index_col=0)
             sales = df.to_dict(orient='records')
-            sales = [{**item, 'Date': datetime.strptime(item['Date'], '%Y-%m-%d')} for item in sales]
+            sales = [
+                {key.lower().replace(' ', '_'): datetime.strptime(value, '%Y-%m-%d') if key == 'Date' else value for key, value in sale.items()}
+                for sale in sales
+            ]
             proton_sales.insert_many(sales)
             print("Database seeded successfully.")
     except ConnectionFailure as e:
