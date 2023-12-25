@@ -6,6 +6,7 @@ from pymongo import MongoClient
 from pandas import read_csv
 from datetime import datetime
 from pymongo.errors import ConnectionFailure
+from mongo_utils import encode_and_decode
 
 app = Flask(__name__)
 
@@ -26,6 +27,12 @@ def seed_db():
         print(f"Failed to connect to MongoDB: {e}")
     except Exception as e:
         print(f"An error occurred during database seeding: {e}")
+
+
+@app.route('/sales')
+def get_sales():
+    sales = proton_sales.find().sort('Date', -1)
+    return encode_and_decode(list(sales))
 
 
 if __name__ == "__main__":
