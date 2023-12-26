@@ -10,7 +10,8 @@
   "dependencies": {
     "ci": "^2.2.0",
     "core-js": "^3.14.0",
-    "vue": "^2.6.14"
+    "vue": "^2.6.14",
+    "vuetify": "^2.6.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.15.8",
@@ -19,13 +20,11 @@
     "@vue/cli-service": "^5.0.1",
     "eslint": "^7.32.0",
     "eslint-plugin-vue": "^7.19.1",
-    "vue-template-compiler": "^2.6.14"
-  },
-  "resolutions": {
-    "glob-parent": "5.1.2",
-    "set-value": "4.0.1",
-    "nth-check": "2.0.1",
-    "ansi-regex": "5.0.1"
+    "sass": "~1.32.0",
+    "sass-loader": "^10.0.0",
+    "vue-cli-plugin-vuetify": "~2.5.8",
+    "vue-template-compiler": "^2.6.14",
+    "vuetify-loader": "^1.7.0"
   },
   "eslintConfig": {
     "root": true,
@@ -44,5 +43,11 @@
   "browserslist": [
     "> 1%",
     "last 2 versions"
-  ]
+  ],
+  "resolutions": {
+    "glob-parent": "5.1.2",
+    "set-value": "4.0.1",
+    "nth-check": "2.0.1",
+    "ansi-regex": "5.0.1"
+  }
 }
