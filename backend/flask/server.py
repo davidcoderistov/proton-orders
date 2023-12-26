@@ -39,7 +39,7 @@ def seed_db():
 
 @app.route('/api/orders')
 def get_orders():
-    orders = proton_orders.find().sort('Date', -1)
+    orders = proton_orders.find().sort('date', -1)
     return encode_and_decode(list(orders))
 
 
