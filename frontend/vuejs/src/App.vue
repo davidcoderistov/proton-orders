@@ -43,7 +43,10 @@
                 :size="7"
             />
             <div v-else style="overflow-y: auto; max-height: 75vh;">
-              <follow-up-orders-list :orders="followUpOrders"/>
+              <follow-up-orders-list :orders="followUpOrders" v-if="followUpOrders.length > 0"/>
+              <div v-else class="text--secondary follow-up-orders-empty">
+                Start adding orders to see them here.
+              </div>
             </div>
           </v-card>
         </div>
@@ -132,5 +135,13 @@ export default {
   display: flex;
   flex-direction: row;
   column-gap: 90px;
+}
+
+.follow-up-orders-empty {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 75vh;
 }
 </style>
