@@ -34,7 +34,9 @@
                 color="pink"
                 dark
             >
-              <v-toolbar-title>Follow up Orders</v-toolbar-title>
+              <v-toolbar-title>Follow up Orders ({{ followUpOrdersCount }})</v-toolbar-title>
+              <v-spacer></v-spacer>
+              <v-toolbar-title>${{ followUpOrdersPrice }}</v-toolbar-title>
             </v-toolbar>
             <orders-loading-list
                 v-if="ordersLoading"
@@ -64,6 +66,23 @@ export default {
     followUpOrders: [],
     selectedOrder: null,
   }),
+  computed: {
+    followUpOrdersCount() {
+      if (Array.isArray(this.followUpOrders)) {
+        return this.followUpOrders.length
+      }
+      return 0
+    },
+    followUpOrdersPrice() {
+      if (Array.isArray(this.followUpOrders) && this.followUpOrders.length > 0) {
+        const price = this.followUpOrders
+            .map(order => parseFloat(Number(order.total_price).toFixed(2)))
+            .reduce((sum, price) => sum + price, 0)
+        return price.toFixed(2)
+      }
+      return '0.00'
+    }
+  },
   methods: {
     fetchOrders() {
       this.ordersLoading = true
