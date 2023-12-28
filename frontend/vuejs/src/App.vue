@@ -16,9 +16,13 @@
             />
             <div v-else style="overflow-y: auto; max-height: 75vh;">
               <orders-list
+                  v-if="orders.length > 0"
                   v-model="selectedOrder"
                   :orders="orders"
               />
+              <div v-else class="text--secondary orders-empty-container">
+                No orders available at the moment.
+              </div>
             </div>
           </v-card>
           <v-btn
@@ -44,7 +48,7 @@
             />
             <div v-else style="overflow-y: auto; max-height: 75vh;">
               <follow-up-orders-list :orders="followUpOrders" v-if="followUpOrders.length > 0"/>
-              <div v-else class="text--secondary follow-up-orders-empty">
+              <div v-else class="text--secondary orders-empty-container">
                 Start adding orders to see them here.
               </div>
             </div>
@@ -137,7 +141,7 @@ export default {
   column-gap: 90px;
 }
 
-.follow-up-orders-empty {
+.orders-empty-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
